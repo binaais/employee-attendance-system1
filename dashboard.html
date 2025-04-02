@@ -5,16 +5,71 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dashboard</title>
   <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    .dashboard-options {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .dashboard-options button {
+      padding: 1rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: none;
+      background-color: #3498db;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .dashboard-options button:hover {
+      background-color: #2980b9;
+    }
+
+    @media (max-width: 600px) {
+      .dashboard-options button {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
 </head>
 <body>
   <header>
-    <h1>Paneli Kryesor</h1>
+    <h1>Paneli i Punëtorit</h1>
   </header>
 
-  <main id="main-content">
-    <!-- Këtu ngarkohet dinamika për punëtor apo admin -->
+  <main>
+    <h2>Zgjidh një veprim</h2>
+
+    <div class="dashboard-options">
+      <button onclick="registerCheckIn()"> Regjistro Hyrjen</button>
+      <button onclick="registerCheckOut()"> Regjistro Daljen</button>
+      <button onclick="applyForLeave()"> Apliko për Leje</button>
+      <button onclick="getLeaveStatus()"> Shiko Lejet e Mia</button>
+    </div>
   </main>
 
-  <script type="module" src="js/app.js"></script>
+  <footer>
+    <p>&copy; 2025 Employee Attendance System</p>
+  </footer>
+
+  <!-- Lidhet me funksionet e dashboardit -->
+  <script type="module">
+    import { registerCheckIn, registerCheckOut } from './js/attendance.js';
+    import { applyForLeave, getLeaveStatus } from './js/leave.js';
+
+    // Simulimi i një punëtori të kyçur
+    const currentUserId = 1;
+
+    // Lidhet me butonat
+    window.registerCheckIn = () => registerCheckIn(currentUserId);
+    window.registerCheckOut = () => registerCheckOut(currentUserId);
+    window.applyForLeave = () =>
+      applyForLeave(currentUserId, 'Pushim Vjetor', '2025-04-10', '2025-04-12', 'Pushim i planifikuar');
+    window.getLeaveStatus = () => getLeaveStatus(currentUserId);
+  </script>
 </body>
 </html>

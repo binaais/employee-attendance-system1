@@ -1,25 +1,23 @@
-// app.js
-
-import { loginUser } from './auth.js';
-import { scanCard } from './attendance.js';
-
-// Inicimi kur DOM është gati
-document.addEventListener('DOMContentLoaded', () => {
-  const loginForm = document.getElementById('loginForm');
-  const scanCardBtn = document.getElementById('scanCardBtn');
-
-  if (loginForm) {
-    loginForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const username = document.getElementById('username').value.trim();
-      const password = document.getElementById('password').value.trim();
-      loginUser(username, password);
+// auth.js
+export async function loginUser(username, password) {
+  try {
+    const response = await fetch('http://localhost:3000/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username, password })
     });
-  }
 
-  if (scanCardBtn) {
-    scanCardBtn.addEventListener('click', () => {
-      scanCard();
-    });
+    const result = await response.json();
+
+    if (result.success) {
+      alert('✅ Kyçja me sukses!');
+      localStorage.setItem('loggedInUser', JSON.stringify(result.user));
+      window.location.href = 'dashboard.html';
+    } else {
+      alert('❌ Kredencialet janë të pasakta!');
+    }
+  } catch (err) {
+    console.error(err);
+    alert('❌ Gabim në lidhje me serverin!');
   }
-});
+}

@@ -2,7 +2,7 @@
 
 import { Punetori } from '../models/punetoriModel.js';
 import { Administratori } from '../models/administratoriModel.js';
-import { applyForLeave, getLeaveStatus } from '../js/leave.js';
+import { applyForLeave, getLeaveStatus } from '../employee-attendance-api/js/leave.js';
 
 // Simulim perdoruesish te kyçur
 let currentUser = new Punetori(1, 'Blina', 'blina', '123', 'punetor', '12345');
@@ -48,7 +48,7 @@ function renderEmployeeDashboard(container) {
   container.appendChild(btnApplyLeave);
   container.appendChild(btnCheckLeaves);
 }
-    
+
 function renderAdminDashboard(container) {
   const btnConfirmLeave = document.createElement('button');
   btnConfirmLeave.textContent = 'Konfirmo Lejet';
