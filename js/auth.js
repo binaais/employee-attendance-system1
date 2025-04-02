@@ -14,10 +14,10 @@ export async function loginUser(username, password) {
       localStorage.setItem('loggedInUser', JSON.stringify(result.user));
       window.location.href = 'dashboard.html';
     } else {
-      alert('❌ Kredencialet janë të pasakta!');
+      alert(' Kredencialet janë të pasakta!');
     }
   } catch (err) {
     console.error(err);
-    alert('❌ Gabim në lidhje me serverin!');
+    alert(' Gabim në lidhje me serverin!');
   }
 }
