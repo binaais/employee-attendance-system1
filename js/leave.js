@@ -1,5 +1,13 @@
 // js/leave.js
-
+document.getElementById('leaveForm').addEventListener('submit', async (event) => {
+  event.preventDefault(); 
+  const leaveType = document.getElementById('leaveType').value;
+  const startDate = document.getElementById('startDate').value;
+  const endDate = document.getElementById('endDate').value;
+  const reason = document.getElementById('reason').value;
+  const employeeId = 123;  
+  await applyForLeave(employeeId, leaveType, startDate, endDate, reason);
+});
 export async function applyForLeave(employeeId, leaveType, startDate, endDate, reason) {
   try {
     const response = await fetch('http://localhost:3000/api/leave/apply', {
@@ -26,8 +34,6 @@ export async function applyForLeave(employeeId, leaveType, startDate, endDate, r
     alert(' Gabim gjatë dërgimit të kërkesës.');
   }
 }
-
-// Opsional: Përdor API për me i marrë lejet nga databaza
 export async function getLeaveStatus(employeeId) {
   try {
     const response = await fetch(`http://localhost:3000/api/leave/status/${employeeId}`);

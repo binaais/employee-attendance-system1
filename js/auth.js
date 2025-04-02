@@ -10,7 +10,7 @@ export async function loginUser(username, password) {
     const result = await response.json();
 
     if (result.success) {
-      alert('✅ Kyçja me sukses!');
+      alert(' Kyçja me sukses!');
       localStorage.setItem('loggedInUser', JSON.stringify(result.user));
       window.location.href = 'dashboard.html';
     } else {
