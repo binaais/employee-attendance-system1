@@ -2,6 +2,14 @@
 
 import { loginUser } from './auth.js';
 import { scanCard } from './attendance.js';
+import { renderDashboard } from './views/dashboardView.js';
+
+function loginUser(username, password) {
+  if (username === 'admin' && password === 'admin123') {
+    alert('Login i suksesshëm!');
+    renderDashboard(); // kjo zëvendëson gjithë përmbajtjen e <main>
+  }
+}
 
 // Inicimi kur DOM është gati
 document.addEventListener('DOMContentLoaded', () => {
