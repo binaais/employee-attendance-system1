@@ -1,6 +1,13 @@
 // attendance.js
 
-export function scanCard() {
-    // Simulim i funksionit të skanimit
-    alert('Skanimi i kartelës u krye me sukses!');
-  }
+// js/attendance.js
+
+export function registerCheckIn(employeeId) {
+  const timestamp = new Date().toLocaleString();
+  alert(`Hyrja u regjistrua për punëtorin ID ${employeeId} në ${timestamp}`);
+}
+
+export function registerCheckOut(employeeId) {
+  const timestamp = new Date().toLocaleString();
+  alert(`Dalja u regjistrua për punëtorin ID ${employeeId} në ${timestamp}`);
+}

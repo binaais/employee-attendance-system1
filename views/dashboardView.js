@@ -4,9 +4,9 @@ import { Punetori } from '../models/punetoriModel.js';
 import { Administratori } from '../models/administratoriModel.js';
 import { applyForLeave, getLeaveStatus } from '../js/leave.js';
 
-// Simulim përdoruesish të kyçur
+// Simulim perdoruesish te kyçur
 let currentUser = new Punetori(1, 'Blina', 'blina', '123', 'punetor', '12345');
-// let currentUser = new Administratori(1, 'Entela'); // test për admin
+// let currentUser = new Administratori(1, 'Entela'); // test per admin
 //punetoriID,emri ,username,password,roli,numriiKarteles
 
 export function renderDashboard() {
@@ -14,7 +14,7 @@ export function renderDashboard() {
   main.innerHTML = '';
 
   const title = document.createElement('h2');
-  title.textContent = `Mirësevjen, ${currentUser.emri}!`;
+  title.textContent = `Miresevjen, ${currentUser.emri}!`;
   main.appendChild(title);
 
   if (currentUser.roli === 'punetor') {
@@ -32,7 +32,7 @@ function renderEmployeeDashboard(container) {
   };
 
   const btnApplyLeave = document.createElement('button');
-  btnApplyLeave.textContent = 'Apliko për Leje';
+  btnApplyLeave.textContent = 'Apliko per Leje';
   btnApplyLeave.onclick = () => {
     const leje = currentUser.kerkoLeje('Pushim', '2025-04-10', '2025-04-12');
     applyForLeave(currentUser.punetoriID, leje.llojiLejes, leje.dataFillimit, leje.dataMbarimit, 'Pushim personal');
@@ -48,18 +48,18 @@ function renderEmployeeDashboard(container) {
   container.appendChild(btnApplyLeave);
   container.appendChild(btnCheckLeaves);
 }
-
+    
 function renderAdminDashboard(container) {
   const btnConfirmLeave = document.createElement('button');
   btnConfirmLeave.textContent = 'Konfirmo Lejet';
   btnConfirmLeave.onclick = () => {
-    alert('Këtu admini do të shfaqë dhe konfirmojë lejet.');
+    alert('Ketu admini do te shfaqe dhe konfirmoje lejet.');
   };
 
   const btnViewReports = document.createElement('button');
   btnViewReports.textContent = 'Shfaq Raportet';
   btnViewReports.onclick = () => {
-    alert('Raportet mujore do të shfaqen këtu.');
+    alert('Raportet mujore do te shfaqen ketu.');
   };
 
   container.appendChild(btnConfirmLeave);
