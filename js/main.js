@@ -1,26 +1,25 @@
-// ✅ Main Integration Script - no model classes, pure API interaction
-
 import { loginUser as loginAPI } from './auth.js';
 import { registerCheckIn, registerCheckOut } from './attendance.js';
 import { applyForLeave, getLeaveStatus } from './leave.js';
 import { generateReportUI } from './raportet.js';
+import { loginUser } from './auth.js';
 
-// ========== Login Logic ==========
-document.addEventListener('DOMContentLoaded', () => {
-  const loginForm = document.getElementById('loginForm');
-  if (loginForm) {
-    loginForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const username = document.getElementById('username').value.trim();
-      const password = document.getElementById('password').value.trim();
+const form = document.getElementById('loginForm');
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const username = document.getElementById('username').value;
+  const password = document.getElementById('password').value;
+  const result = await loginUser(username, password);
 
-      const result = await loginAPI(username, password);
-      // auth.js handles the redirect and storage
-    });
+  if (result.success) {
+    sessionStorage.setItem('userId', result.userId);
+    sessionStorage.setItem('role', result.role);
+    window.location.href = 'dashboard.html'; // Redirect to dashboard
+  } else {
+    alert('Login failed. Please check your credentials.');
   }
 });
 
-// ========== Dashboard Logic ==========
 window.registerCheckIn = async () => {
   const user = JSON.parse(localStorage.getItem('loggedInUser'));
   if (user) await registerCheckIn(user.id);
@@ -36,7 +35,6 @@ window.getLeaveStatus = async () => {
   if (user) await getLeaveStatus(user.id);
 };
 
-// ========== Leave Application Logic ==========
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('leaveForm');
   if (form) {
@@ -55,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// ========== Report Page Logic ==========
+// ========== Raport ==========
 document.addEventListener('DOMContentLoaded', () => {
   if (window.location.pathname.includes('raportet.html')) {
     generateReportUI();

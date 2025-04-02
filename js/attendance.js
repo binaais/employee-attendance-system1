@@ -1,19 +1,29 @@
-export async function registerCheckIn(userId) {
-  const res = await fetch('http://localhost:3000/api/attendance/check-in', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ punetori_id: userId })
-  });
-  const data = await res.json();
-  alert(data.success ? '✅ Hyrja u regjistrua!' : ' Gabim në regjistrim');
-}
+// Attendance Logic - Replace sessionStorage with localStorage
+window.registerCheckIn = async () => {
+  const user = JSON.parse(localStorage.getItem('loggedInUser'));
+  if (user) await registerCheckIn(user.id);
+};
 
-export async function registerCheckOut(userId) {
-  const res = await fetch('http://localhost:3000/api/attendance/check-out', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ punetori_id: userId })
-  });
-  const data = await res.json();
-  alert(data.success ? '✅ Dalja u regjistrua!' : ' Gabim në regjistrim');
-}
+window.registerCheckOut = async () => {
+  const user = JSON.parse(localStorage.getItem('loggedInUser'));
+  if (user) await registerCheckOut(user.id);
+};
+
+// Leave Application Logic
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('leaveForm');
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const user = JSON.parse(localStorage.getItem('loggedInUser')); // Get from localStorage
+      const leaveType = document.getElementById('leaveType').value;
+      const startDate = document.getElementById('startDate').value;
+      const endDate = document.getElementById('endDate').value;
+      const reason = document.getElementById('reason').value;
+
+      if (user) {
+        await applyForLeave(user.id, leaveType, startDate, endDate, reason);
+      }
+    });
+  }
+});

@@ -4,8 +4,8 @@ import { Punetori } from '../models/punetoriModel.js';
 import { Administratori } from '../models/administratoriModel.js';
 import { applyForLeave, getLeaveStatus } from '../employee-attendance-api/js/leave.js';
 
-// Simulim perdoruesish te kyçur
-let currentUser = new Punetori(1, 'Blina', 'blina', '123', 'punetor', '12345');
+let currentUser = getLoggedInUser(); 
+
 // let currentUser = new Administratori(1, 'Entela'); // test per admin
 //punetoriID,emri ,username,password,roli,numriiKarteles
 
