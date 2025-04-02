@@ -7,6 +7,7 @@ import { applyForLeave, getLeaveStatus } from '../js/leave.js';
 // Simulim përdoruesish të kyçur
 let currentUser = new Punetori(1, 'Blina', 'blina', '123', 'punetor', '12345');
 // let currentUser = new Administratori(1, 'Entela'); // test për admin
+//punetoriID,emri ,username,password,roli,numriiKarteles
 
 export function renderDashboard() {
   const main = document.querySelector('main');
