@@ -1,23 +1,23 @@
-// auth.js
 export async function loginUser(username, password) {
-  try {
-    const response = await fetch('http://localhost:3000/api/auth', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username, password })
-    });
+  const users = [
+    { username: 'admin', password: 'admin123', role: 'admin', userId: 1, cardID: '1234' },
+    { username: 'employee1', password: 'pass123', role: 'employee', userId: 2, cardID: '12345' },
+    { username: 'employee2', password: 'pass456', role: 'employee', userId: 3, cardID: '123456' },
+    { username: 'user', password: 'user123', role: 'employee', userId: 4, cardID: '9999' }
+  ];
 
-    const result = await response.json();
+  const user = users.find(
+    (u) => u.username === username && u.password === password
+  );
 
-    if (result.success) {
-      alert(' Kyçja me sukses!');
-      localStorage.setItem('loggedInUser', JSON.stringify(result.user));
-      window.location.href = 'dashboard.html';
-    } else {
-      alert(' Kredencialet janë të pasakta!');
-    }
-  } catch (err) {
-    console.error(err);
-    alert(' Gabim në lidhje me serverin!');
+  if (user) {
+    return {
+      success: true,
+      userId: user.userId,
+      role: user.role,
+      cardID: user.cardID
+    };
+  } else {
+    return { success: false };
   }
 }

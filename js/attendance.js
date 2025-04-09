@@ -1,29 +1,37 @@
-// Attendance Logic - Replace sessionStorage with localStorage
-window.registerCheckIn = async () => {
-  const user = JSON.parse(localStorage.getItem('loggedInUser'));
-  if (user) await registerCheckIn(user.id);
-};
-
-window.registerCheckOut = async () => {
-  const user = JSON.parse(localStorage.getItem('loggedInUser'));
-  if (user) await registerCheckOut(user.id);
-};
-
-// Leave Application Logic
 document.addEventListener('DOMContentLoaded', () => {
-  const form = document.getElementById('leaveForm');
-  if (form) {
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const user = JSON.parse(localStorage.getItem('loggedInUser')); // Get from localStorage
-      const leaveType = document.getElementById('leaveType').value;
-      const startDate = document.getElementById('startDate').value;
-      const endDate = document.getElementById('endDate').value;
-      const reason = document.getElementById('reason').value;
+  const userId = sessionStorage.getItem('userId');
+  const role = sessionStorage.getItem('role');
 
-      if (user) {
-        await applyForLeave(user.id, leaveType, startDate, endDate, reason);
-      }
+  
+  if (!userId || role !== 'employee') {
+    window.location.href = 'login.html';
+  }
+
+
+  const btnCheckIn = document.getElementById('registerCheckInBtn');
+  if (btnCheckIn) {
+    btnCheckIn.addEventListener('click', () => {
+      const time = new Date().toLocaleString();
+      alert(`Check-In i suksesshëm!\nKoha: ${time}`);
     });
   }
+
+  // Funksionaliteti i butonit për regjistrimin e Check-Out
+  const btnCheckOut = document.getElementById('registerCheckOutBtn');
+  if (btnCheckOut) {
+    btnCheckOut.addEventListener('click', () => {
+      const time = new Date().toLocaleString();
+      alert(`Check-Out i suksesshëm!\nKoha: ${time}`);
+    });
+  }
+
+  const btnApplyLeave = document.getElementById('applyLeaveBtn');
+  if (btnApplyLeave) {
+    btnApplyLeave.addEventListener('click', () => {
+      
+      window.location.href = 'leave-application.html'; 
+    });
+  }
+
+  
 });
