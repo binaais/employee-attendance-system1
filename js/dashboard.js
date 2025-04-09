@@ -11,9 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const userName = sessionStorage.getItem('userName') || 'User';
 
   
-  const title = document.createElement('h2');
-  title.textContent = `Welcome, ${userName}!`;
-  document.querySelector('main').prepend(title);
 
   
   const btnApplyLeave = document.getElementById('applyLeaveBtn');
