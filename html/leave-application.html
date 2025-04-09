@@ -3,34 +3,62 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aplikim për Leje</title>
-  <link rel="stylesheet" href="css/styles.css" />
-  <script type="module" src="js/main.js"></script>
+  <title>Leave Application - Employee Attendance System</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <script type="module" src="../js/leave.js"></script>
 </head>
 <body>
+  <header>
+    <h1>Leje Pushimi</h1>
+  </header>
+
   <main>
-    <h2>Apliko për Leje</h2>
+    <h2>Apliko per Leje Pushimi</h2>
     <form id="leaveForm">
-      <label>Lloji i Lejes:</label>
-      <select id="leaveType">
-        <option>Pushim Vjetor</option>
-        <option>Pushim Mjekësor</option>
-        <option>Pushim Personal</option>
+      <label for="leaveType">Lloji i lejes:</label>
+      <select id="leaveType" required>
+        <option value="">Zgjedh llojin e lejes:</option>
+        <option value="Sick Leave">Semure</option>
+        <option value="Personal Leave">Personale</option>#
       </select>
 
-      <label>Data Fillimit:</label>
+      <label for="startDate">Data e fillimit:</label>
       <input type="date" id="startDate" required />
 
-      <label>Data Mbarimit:</label>
+      <label for="endDate">Data e mbarimit:</label>
       <input type="date" id="endDate" required />
 
-      <label>Arsyeja:</label>
-      <textarea id="reason"></textarea>
+      <label for="reason">Arsyeja e lejes:</label>
+      <textarea id="reason" required></textarea>
 
-      <button type="submit">Dërgo Kërkesën</button>
+      <button type="submit" id="submitLeaveBtn">Dergo Kerkesen</button>
     </form>
   </main>
 
-  <script type="module" src="js/leave.js"></script>
+  <footer>
+    <p>&copy; 2025 Employee Attendance System</p>
+  </footer>
+
+  <script type="module">
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('leaveForm');
+
+      
+      if (form) {
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+
+          const leaveType = document.getElementById('leaveType').value;
+          const startDate = document.getElementById('startDate').value;
+          const endDate = document.getElementById('endDate').value;
+          const reason = document.getElementById('reason').value;
+
+          alert(`Leave Application Sent!\nType: ${leaveType}\nFrom: ${startDate} To: ${endDate}\nReason: ${reason}`);
+
+          form.reset();
+        });
+      }
+    });
+  </script>
 </body>
 </html>

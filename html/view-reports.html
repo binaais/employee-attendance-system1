@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>View Reports - Employee Attendance System</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <script type="module" src="../js/view-reports.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Raportet e Check-In/Out të punonjësve </h1>
+    <!--<button id="logoutBtn">Logout</button>-->
+  </header>
+
+  <main>
+    <h2>Formular për Raport të Ri</h2>
+<form id="raportForm">
+  <label for="raportID">Raport ID:</label>
+  <input type="text" id="raportID" name="raportID" required><br><br>
+
+  <label for="lejetTotal">Lejet Totale:</label>
+  <input type="number" id="lejetTotal" name="lejetTotal" required><br><br>
+
+  <label for="pjesemarrjaTotale">Pjesëmarrja Totale:</label>
+  <input type="number" id="pjesemarrjaTotale" name="pjesemarrjaTotale" required><br><br>
+
+  <label for="vitiMuaji">Viti/Muaji:</label>
+  <input type="month" id="vitiMuaji" name="vitiMuaji" required><br><br>
+
+  <button type="submit">Ruaj Raportin</button>
+</form>
+
+<div id="raportStatus"></div>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Employee Attendance System</p>
+  </footer>
+
+  <script type="module">
+    
+    document.getElementById("raportForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const raport = {
+    raportID: document.getElementById("raportID").value,
+    lejetTotal: document.getElementById("lejetTotal").value,
+    pjesemarrjaTotale: document.getElementById("pjesemarrjaTotale").value,
+    vitiMuaji: document.getElementById("vitiMuaji").value,
+  };
+
+  
+  console.log("Raporti u regjistrua:", raport);
+
+  document.getElementById("raportStatus").innerText = "Raporti u ruajt me sukses!";
+});
+
+  </script>
+</body>
+</html>
