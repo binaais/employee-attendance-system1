@@ -18,7 +18,8 @@
       <h2>Menaxhimi i punëtorëve</h2>
       <p>Këtu mund të shihni dhe menaxhoni punëtorët edhe t'i shqyrtoni kërkesat për leje.</p>
       <button onclick="window.location.href='view-reports.html'">Krijo Raportet</button>
-      <button id="viewEmployeeLeaveRequestsBtn">Menaxho Punëtorët</button>
+      <button id="manageEmployees">Menaxho Punëtorët</button>
+
       <button id="approveLeaveBtn">Mirato/Refuzo Lejën</button>
     </div>
   </main>
@@ -34,16 +35,26 @@
       sessionStorage.setItem('role', 'admin');
     }
 
-    // Funksionimi i butonave
-    document.addEventListener('DOMContentLoaded', () => {
-      document.getElementById('viewEmployeeLeaveRequestsBtn').addEventListener('click', () => {
-        window.location.href = 'manage-leave-requests.html';
-      });
+    
+document.addEventListener('DOMContentLoaded', () => {
+  const confirmBtn = document.getElementById('confirmLeaves');
+  const manageBtn = document.getElementById('manageEmployees');
 
-      document.getElementById('approveLeaveBtn').addEventListener('click', () => {
-        window.location.href = 'approve-reject-leave.html';
-      });
+  if (confirmBtn) {
+    confirmBtn.addEventListener('click', () => {
+      alert('Lejet u konfirmuan nga administratori!');
     });
+  }
+
+  if (manageBtn) {
+    manageBtn.addEventListener('click', () => {
+      alert('Duke u ridrejtuar te faqja për menaxhimin e punëtorëve...');
+      window.location.href = 'manage-employees.html'; 
+    });
+  }
+});
+
+
   </script>
 </body>
 </html>

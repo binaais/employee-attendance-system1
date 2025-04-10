@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Menaxho Puntorët</title>
+
+  <style>
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+  
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f7fa;
+      color: #333;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+  
+    .system-header {
+      background-color: #2c3e50;
+      color: #fff;
+      padding: 1.5rem;
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      border-bottom: 4px solid #ecf0f1;
+    }
+  
+    
+    main {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    }
+  
+    
+    h2 {
+      margin-bottom: 1.5rem;
+      text-align: center;
+      color: #2c3e50;
+    }
+  
+    form {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      margin-bottom: 30px;
+    }
+  
+    form label {
+      display: block;
+      margin-top: 15px;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+  
+    form input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+  
+    form button {
+      margin-top: 20px;
+      padding: 12px 15px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      width: 100%;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+    }
+  
+    form button:hover {
+      background-color: #2980b9;
+    }
+  
+    
+    .table-container {
+      background-color: #fff;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      margin-top: 2rem;
+    }
+  
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 1rem;
+    }
+  
+    th, td {
+      padding: 14px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+  
+    th {
+      background-color: #f0f4f8;
+      font-weight: 600;
+      color: #2c3e50;
+    }
+  
+    tr:hover {
+      background-color: #f9fbfd;
+    }
+  
+    
+    @media (max-width: 600px) {
+      main {
+        margin: 1rem;
+        padding: 1.5rem;
+      }
+  
+      form button {
+        font-size: 0.95rem;
+      }
+  
+      table {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+  
+</head>
+<body>
+    <div class="system-header">
+        Menaxho Puntorët
+      </div>
+      
+
+  <form id="employeeForm">
+    <label for="name">Emri:</label>
+    <input type="text" id="name" required />
+
+    <label for="position">Pozita:</label>
+    <input type="text" id="position" required />
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" required />
+
+    <button type="submit">Ruaj</button>
+  </form>
+
+  <h2>Lista e punëtorëve</h2>
+  <table id="employeeTable">
+    <thead>
+      <tr>
+        <th>Emri</th>
+        <th>Pozita</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+    </tbody>
+  </table>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('employeeForm');
+      const nameInput = document.getElementById('name');
+      const positionInput = document.getElementById('position');
+      const emailInput = document.getElementById('email');
+      const tableBody = document.querySelector('#employeeTable tbody');
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const name = nameInput.value.trim();
+        const position = positionInput.value.trim();
+        const email = emailInput.value.trim();
+
+        if (!name || !position || !email) {
+          alert("Të gjitha fushat janë të detyrueshme.");
+          return;
+        }
+
+        
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${name}</td>
+          <td>${position}</td>
+          <td>${email}</td>
+        `;
+
+        tableBody.appendChild(row);
+
+        
+        nameInput.value = '';
+        positionInput.value = '';
+        emailInput.value = '';
+
+        
+        nameInput.focus();
+      });
+    });
+  </script>
+</body>
+</html>
