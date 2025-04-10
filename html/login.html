@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="data:,">
+  <title>Kyçu - Employee Attendance System</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <script type="module" src="../js/main.js"></script>
+  <script type="module" src="../js/auth.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Employee Attendance System</h1>
+  </header>
+
+  <main class="login-page">
+    <h2>Kyçu në sistem</h2>
+    <form id="loginForm">
+      <label for="cardID">Numri i kartelës:</label>
+      <input type="text" id="cardID" name="cardID" required />
+
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required />
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required />
+
+      <button type="submit">Kyçu</button>
+      <p><a href="#">Keni harruar fjalëkalimin?</a></p>
+    </form>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Employee Attendance System</p>
+  </footer>
+</body>
+</html>
