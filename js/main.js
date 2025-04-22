@@ -1,4 +1,4 @@
-import { loginUser } from './auth.js';
+/*import { loginUser } from './auth.js';*/
 
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('loginForm');
