@@ -29,11 +29,11 @@ To run this project, you'll need:
 - If using a browser: Open index.html directly
 - If using Live Server: Right-click on index.html and choose "Open with Live Server".
 ## Usage
-- Employees log in using their credentials (username and password).
+- Employees log in using their credentials (cardID, username and password).
 - Authentication is handled via the backend and checked against the database.
-- After logging in, the employee can check in andd checkout.
-- Administrators can view attendance reports showing check-in and check-out times.
-- Admins can manage employee records, view all attendance data, and generate reports.
+- After logging in, the employee can check in and checkout.
+- Administrators can view attendance reports showing checkin and checkout times.
+- Administrators can manage employee records, view all attendance infos, and generate reports.
 
 ## Contact 
 - Blina Islamaj - blinaislamaj@gmail.com
