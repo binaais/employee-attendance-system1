@@ -1,14 +1,19 @@
+
+// Database connection  
+const db = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: '',
+  database: 'attendance_db',
+});
 document.addEventListener('DOMContentLoaded', () => {
   const confirmBtn = document.getElementById('confirmLeaves');
   const manageBtn = document.getElementById('manageEmployees');
-
   if (confirmBtn) {
     confirmBtn.addEventListener('click', () => {
       alert('Leaves confirmed by admin!');
     });
-  }
-
-  if (manageBtn) {
+  }  if (manageBtn) {
     manageBtn.addEventListener('click', () => {
       alert('Redirecting to employee management page...');
       window.location.href = 'manage-employees.html'; 
