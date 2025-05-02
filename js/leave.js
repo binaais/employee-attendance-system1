@@ -1,49 +1,33 @@
-// js/leave.js
+document.addEventListener('DOMContentLoaded', () => {
+ 
+  const isFormDisabled = sessionStorage.getItem('leaveFormDisabled') === 'true';
+  const form = document.getElementById('leaveForm');
+  const submitBtn = document.getElementById('submitLeaveBtn');
 
-export async function applyForLeave(employeeId, leaveType, startDate, endDate, reason) {
-  try {
-    const response = await fetch('http://localhost:3000/api/leave/apply', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        punetori_id: employeeId,
-        lloji_lejes: leaveType,
-        data_fillimit: startDate,
-        data_mbarimit: endDate,
-        arsyeja: reason
-      })
+  
+  if (isFormDisabled) {
+    form.querySelectorAll('input, select, textarea').forEach(element => {
+      element.disabled = true; 
     });
-
-    const result = await response.json();
-
-    if (result.success) {
-      alert(' Kërkesa për leje u dërgua me sukses!');
-    } else {
-      alert(' Dështoi dërgimi i kërkesës për leje.');
-    }
-  } catch (err) {
-    console.error(err);
-    alert(' Gabim gjatë dërgimit të kërkesës.');
+    submitBtn.disabled = true; 
+    alert("You have already applied for leave.");
   }
-}
 
-// Opsional: Përdor API për me i marrë lejet nga databaza
-export async function getLeaveStatus(employeeId) {
-  try {
-    const response = await fetch(`http://localhost:3000/api/leave/status/${employeeId}`);
-    const data = await response.json();
+  
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
 
-    if (!data || data.length === 0) {
-      alert('Nuk ka leje të regjistruara.');
-    } else {
-      let result = '📋 Lejet e tua:\n';
-      data.forEach(l => {
-        result += ` ${l.lloji_lejes} (${l.data_fillimit} - ${l.data_mbarimit}) → ${l.statusi}\n`;
-      });
-      alert(result);
-    }
-  } catch (err) {
-    console.error(err);
-    alert(' Gabim gjatë marrjes së lejeve.');
+      const leaveType = document.getElementById('leaveType').value;
+      const startDate = document.getElementById('startDate').value;
+      const endDate = document.getElementById('endDate').value;
+      const reason = document.getElementById('reason').value;
+
+      alert(`Leave Application Sent!\nType: ${leaveType}\nFrom: ${startDate} To: ${endDate}\nReason: ${reason}`);
+
+      
+      sessionStorage.setItem('leaveFormDisabled', 'true');
+      form.reset();
+    });
   }
-}
+});

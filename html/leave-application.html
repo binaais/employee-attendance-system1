@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leave Application - Employee Attendance System</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <script type="module" src="../js/leave.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Leje Pushimi</h1>
+  </header>
+
+  <main>
+    <h2>Apliko per Leje Pushimi</h2>
+    <form id="leaveForm">
+      <label for="leaveType">Lloji i lejes:</label>
+      <select id="leaveType" required>
+        <option value="">Zgjedh llojin e lejes:</option>
+        <option value="Sick Leave">Semure</option>
+        <option value="Personal Leave">Personale</option>#
+      </select>
+
+      <label for="startDate">Data e fillimit:</label>
+      <input type="date" id="startDate" required />
+
+      <label for="endDate">Data e mbarimit:</label>
+      <input type="date" id="endDate" required />
+
+      <label for="reason">Arsyeja e lejes:</label>
+      <textarea id="reason" required></textarea>
+
+      <button type="submit" id="submitLeaveBtn">Dergo Kerkesen</button>
+    </form>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Employee Attendance System</p>
+  </footer>
+
+  <script type="module">
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('leaveForm');
+
+      
+      if (form) {
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+
+          const leaveType = document.getElementById('leaveType').value;
+          const startDate = document.getElementById('startDate').value;
+          const endDate = document.getElementById('endDate').value;
+          const reason = document.getElementById('reason').value;
+
+          alert(`Leave Application Sent!\nType: ${leaveType}\nFrom: ${startDate} To: ${endDate}\nReason: ${reason}`);
+
+          form.reset();
+        });
+      }
+    });
+  </script>
+</body>
+</html>

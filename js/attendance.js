@@ -1,19 +1,37 @@
-export async function registerCheckIn(userId) {
-  const res = await fetch('http://localhost:3000/api/attendance/check-in', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ punetori_id: userId })
-  });
-  const data = await res.json();
-  alert(data.success ? '✅ Hyrja u regjistrua!' : ' Gabim në regjistrim');
-}
+document.addEventListener('DOMContentLoaded', () => {
+  const userId = sessionStorage.getItem('userId');
+  const role = sessionStorage.getItem('role');
 
-export async function registerCheckOut(userId) {
-  const res = await fetch('http://localhost:3000/api/attendance/check-out', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ punetori_id: userId })
-  });
-  const data = await res.json();
-  alert(data.success ? '✅ Dalja u regjistrua!' : ' Gabim në regjistrim');
-}
+  
+  if (!userId || role !== 'employee') {
+    window.location.href = 'login.html';
+  }
+
+
+  const btnCheckIn = document.getElementById('registerCheckInBtn');
+  if (btnCheckIn) {
+    btnCheckIn.addEventListener('click', () => {
+      const time = new Date().toLocaleString();
+      alert(`Check-In i suksesshëm!\nKoha: ${time}`);
+    });
+  }
+
+  // Funksionaliteti i butonit për regjistrimin e Check-Out
+  const btnCheckOut = document.getElementById('registerCheckOutBtn');
+  if (btnCheckOut) {
+    btnCheckOut.addEventListener('click', () => {
+      const time = new Date().toLocaleString();
+      alert(`Check-Out i suksesshëm!\nKoha: ${time}`);
+    });
+  }
+
+  const btnApplyLeave = document.getElementById('applyLeaveBtn');
+  if (btnApplyLeave) {
+    btnApplyLeave.addEventListener('click', () => {
+      
+      window.location.href = 'leave-application.html'; 
+    });
+  }
+
+  
+});

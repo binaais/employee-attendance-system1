@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paneli i Administratorit</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  
+</head>
+<body>
+
+  <header>
+    <h1>Paneli i Administratorit</h1>
+  </header>
+
+  <main>
+    <div class="panel-container">
+      <h2>Menaxhimi i punëtorëve</h2>
+      <p>Këtu mund të shihni dhe menaxhoni punëtorët edhe t'i shqyrtoni kërkesat për leje.</p>
+      <button onclick="window.location.href='view-reports.html'">Krijo Raportet</button>
+      <button id="manageEmployees">Menaxho Punëtorët</button>
+
+      <button id="approveLeaveBtn">Mirato/Refuzo Lejën</button>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Employee Attendance System</p>
+  </footer>
+
+  <script>
+    // Për testim lokal: sigurohu që sessionStorage ekziston
+    if (!sessionStorage.getItem('userId')) {
+      sessionStorage.setItem('userId', '1');
+      sessionStorage.setItem('role', 'admin');
+    }
+
+    
+document.addEventListener('DOMContentLoaded', () => {
+  const confirmBtn = document.getElementById('confirmLeaves');
+  const manageBtn = document.getElementById('manageEmployees');
+
+  if (confirmBtn) {
+    confirmBtn.addEventListener('click', () => {
+      alert('Lejet u konfirmuan nga administratori!');
+    });
+  }
+
+  if (manageBtn) {
+    manageBtn.addEventListener('click', () => {
+      alert('Duke u ridrejtuar te faqja për menaxhimin e punëtorëve...');
+      window.location.href = 'manage-employees.html'; 
+    });
+  }
+});
+
+
+  </script>
+</body>
+</html>
