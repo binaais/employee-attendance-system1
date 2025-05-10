@@ -13,13 +13,13 @@
   </header>
 
   <main>
-    <h2>Apliko per Leje Pushimi</h2>
+    <h2>Apliko për Leje Pushimi</h2>
     <form id="leaveForm">
       <label for="leaveType">Lloji i lejes:</label>
       <select id="leaveType" required>
-        <option value="">Zgjedh llojin e lejes:</option>
+        <option value="">Zgjidh llojin e lejes:</option>
         <option value="Sick Leave">Semure</option>
-        <option value="Personal Leave">Personale</option>#
+        <option value="Personal Leave">Personale</option>
       </select>
 
       <label for="startDate">Data e fillimit:</label>
@@ -31,34 +31,12 @@
       <label for="reason">Arsyeja e lejes:</label>
       <textarea id="reason" required></textarea>
 
-      <button type="submit" id="submitLeaveBtn">Dergo Kerkesen</button>
+      <button type="submit" id="submitLeaveBtn">Dërgo Kërkesën</button>
     </form>
   </main>
 
   <footer>
     <p>&copy; 2025 Employee Attendance System</p>
   </footer>
-
-  <script type="module">
-    document.addEventListener('DOMContentLoaded', () => {
-      const form = document.getElementById('leaveForm');
-
-      
-      if (form) {
-        form.addEventListener('submit', (e) => {
-          e.preventDefault();
-
-          const leaveType = document.getElementById('leaveType').value;
-          const startDate = document.getElementById('startDate').value;
-          const endDate = document.getElementById('endDate').value;
-          const reason = document.getElementById('reason').value;
-
-          alert(`Leave Application Sent!\nType: ${leaveType}\nFrom: ${startDate} To: ${endDate}\nReason: ${reason}`);
-
-          form.reset();
-        });
-      }
-    });
-  </script>
 </body>
 </html>
