@@ -1,4 +1,4 @@
-import { loginUser } from './auth.js';
+/*import { loginUser } from './auth.js';*/
 
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('loginForm');
@@ -10,27 +10,35 @@ document.addEventListener('DOMContentLoaded', () => {
       const username = document.getElementById('username').value;
       const password = document.getElementById('password').value;
 
-      console.log('Username:', username);
-      console.log('Password:', password);
+      try {
+        const response = await fetch('http://localhost:3001/api/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ username, password })
+        });
 
-      const result = await loginUser(username, password);
-      console.log('Login result:', result);
+        const result = await response.json();
 
-      if (result.success) {
-        sessionStorage.setItem('userId', result.userId);
-        sessionStorage.setItem('role', result.role);
-        sessionStorage.setItem('cardID', result.cardID); 
+        if (result.success) {
+          sessionStorage.setItem('userId', result.userId);
+          sessionStorage.setItem('role', result.role);
 
-        if (result.role.toLowerCase() === 'admin') {
-          window.location.replace('admin-panel.html');
+          if (result.role.toLowerCase() === 'admin') {
+            window.location.replace('admin-panel.html');
+          } else {
+            window.location.replace('dashboard.html');
+          }
         } else {
-          window.location.replace('dashboard.html');
+          alert('Kyçja dështoi. Kontrolloni kredencialet.');
         }
-      } else {
-        alert('Kyçja dështoi. Kontrolloni kredencialet.');
+      } catch (error) {
+        console.error('Gabim gjatë login:', error);
       }
     });
   } else {
     console.error('Login form not found!');
   }
 });
+
